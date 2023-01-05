@@ -1,0 +1,29 @@
+{
+  "name": "smart-contract-raffle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamii-a/smart-contract-raffle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bamii-a/smart-contract-raffle/issues"
+  },
+  "homepage": "https://github.com/bamii-a/smart-contract-raffle#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "solidity-coverage": "^0.8.2"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.5.1",
+    "dotenv": "^16.0.3"
+  }
+}
