@@ -51,37 +51,37 @@ chainId === 31337
             raffle.once("WinnerPicked", async function () {
               console.log("WinnerPicked event fired!");
 
-              //   try {
-              //     // add our asserts here
-              //     /* Getting the recent winner of the raffle. */
-              //     const recentWinner = await raffle.getRecentWinner();
-              //     /* Getting the state of the raffle. */
-              //     const raffleState = await raffle.getRaffleState();
-              //     /* Getting the balance of the first account in the accounts array. */
-              //     const winnerEndingBalance = await accounts[0].getBalance();
-              //     /* Getting the last timestamp of the raffle. */
-              //     const endingTimeStamp = await raffle.getLastTimeStamp();
-              //     /* Checking that the player at index 0 is reverted. */
-              //     await expect(raffle.getPlayer(0)).to.be.reverted;
-              //     /* Checking that the recent winner is the same as the first account in the accounts
-              //     array. */
-              //     assert.equal(recentWinner.toString(), accounts[0].address);
-              //     /* Checking that the raffle state is 0. */
-              //     assert.equal(raffleState, 0);
-              //     /* Checking that the winner's balance is equal to the winner's starting balance plus
-              //     the entrance fee. */
-              //     assert.equal(
-              //       winnerEndingBalance.toString(),
-              //       winnerStartingBalance.add(entranceFee).toString()
-              //     );
-              //     /* It's checking that the timestamp has changed. */
-              //     assert(endingTimeStamp > startingTimeStamp);
-              //     console.log("done");
-              //     resolve();
-              //   } catch (error) {
-              //     console.log(error);
-              //     reject(error);
-              //   }
+              try {
+                // add our asserts here
+                /* Getting the recent winner of the raffle. */
+                const recentWinner = await raffle.getRecentWinner();
+                /* Getting the state of the raffle. */
+                const raffleState = await raffle.getRaffleState();
+                /* Getting the balance of the first account in the accounts array. */
+                const winnerEndingBalance = await accounts[0].getBalance();
+                /* Getting the last timestamp of the raffle. */
+                const endingTimeStamp = await raffle.getLastTimeStamp();
+                /* Checking that the player at index 0 is reverted. */
+                await expect(raffle.getPlayer(0)).to.be.reverted;
+                /* Checking that the recent winner is the same as the first account in the accounts
+                array. */
+                assert.equal(recentWinner.toString(), accounts[0].address);
+                /* Checking that the raffle state is 0. */
+                assert.equal(raffleState, 0);
+                /* Checking that the winner's balance is equal to the winner's starting balance plus
+                the entrance fee. */
+                assert.equal(
+                  winnerEndingBalance.toString(),
+                  winnerStartingBalance.add(entranceFee).toString()
+                );
+                /* It's checking that the timestamp has changed. */
+                assert(endingTimeStamp > startingTimeStamp);
+                console.log("done");
+                resolve();
+              } catch (error) {
+                console.log(error);
+                reject(error);
+              }
             });
             // Then entering the raffle
             console.log("Entering Raffle...");
