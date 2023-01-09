@@ -17,6 +17,7 @@ import { NetworkUserConfig } from "hardhat/types";
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY as string; /* Acctount 3 */
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL as string;
+
 // const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY as
 //   | NetworkUserConfig
 //   | undefined;

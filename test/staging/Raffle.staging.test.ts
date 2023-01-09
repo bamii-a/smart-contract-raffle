@@ -16,7 +16,7 @@ import networkConfig from "../../helper-hardhat-config";
 
 /** */
 const chainId = network.config.chainId;
-
+console.log(chainId);
 chainId === 31337
   ? describe.skip
   : describe("lottery Staging Tests", () => {
