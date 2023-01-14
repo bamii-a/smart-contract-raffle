@@ -40,7 +40,7 @@ const config: HardhatUserConfig = {
       chainId: 5,
       accounts: [PRIVATE_KEY],
     },
-    hardhat: {
+    localhost: {
       // accounts - hardhat places in already on local
       chainId: 31337,
     },

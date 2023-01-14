@@ -32,7 +32,8 @@ export interface RaffleInterface extends utils.Interface {
   functions: {
     "checkUpkeep(bytes)": FunctionFragment;
     "enterRaffle()": FunctionFragment;
-    "getEntraceFee()": FunctionFragment;
+    "getBalance()": FunctionFragment;
+    "getEntranceFee()": FunctionFragment;
     "getInterval()": FunctionFragment;
     "getLastTimeStamp()": FunctionFragment;
     "getNumWords()": FunctionFragment;
@@ -50,7 +51,8 @@ export interface RaffleInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "checkUpkeep"
       | "enterRaffle"
-      | "getEntraceFee"
+      | "getBalance"
+      | "getEntranceFee"
       | "getInterval"
       | "getLastTimeStamp"
       | "getNumWords"
@@ -73,7 +75,11 @@ export interface RaffleInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "getEntraceFee",
+    functionFragment: "getBalance",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getEntranceFee",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -129,8 +135,9 @@ export interface RaffleInterface extends utils.Interface {
     functionFragment: "enterRaffle",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "getBalance", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getEntraceFee",
+    functionFragment: "getEntranceFee",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -178,12 +185,12 @@ export interface RaffleInterface extends utils.Interface {
   events: {
     "RaffleEnter(address)": EventFragment;
     "RequestedRaffleWinner(uint256)": EventFragment;
-    "winnerPicked(address)": EventFragment;
+    "WinnerPicked(address)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "RaffleEnter"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RequestedRaffleWinner"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "winnerPicked"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "WinnerPicked"): EventFragment;
 }
 
 export interface RaffleEnterEventObject {
@@ -204,12 +211,12 @@ export type RequestedRaffleWinnerEvent = TypedEvent<
 export type RequestedRaffleWinnerEventFilter =
   TypedEventFilter<RequestedRaffleWinnerEvent>;
 
-export interface winnerPickedEventObject {
+export interface WinnerPickedEventObject {
   winner: string;
 }
-export type winnerPickedEvent = TypedEvent<[string], winnerPickedEventObject>;
+export type WinnerPickedEvent = TypedEvent<[string], WinnerPickedEventObject>;
 
-export type winnerPickedEventFilter = TypedEventFilter<winnerPickedEvent>;
+export type WinnerPickedEventFilter = TypedEventFilter<WinnerPickedEvent>;
 
 export interface Raffle extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -247,7 +254,9 @@ export interface Raffle extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    getEntraceFee(overrides?: CallOverrides): Promise<[BigNumber]>;
+    getBalance(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getEntranceFee(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     getInterval(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -291,7 +300,9 @@ export interface Raffle extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  getEntraceFee(overrides?: CallOverrides): Promise<BigNumber>;
+  getBalance(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getEntranceFee(overrides?: CallOverrides): Promise<BigNumber>;
 
   getInterval(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -333,7 +344,9 @@ export interface Raffle extends BaseContract {
 
     enterRaffle(overrides?: CallOverrides): Promise<void>;
 
-    getEntraceFee(overrides?: CallOverrides): Promise<BigNumber>;
+    getBalance(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getEntranceFee(overrides?: CallOverrides): Promise<BigNumber>;
 
     getInterval(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -381,12 +394,12 @@ export interface Raffle extends BaseContract {
       requestId?: PromiseOrValue<BigNumberish> | null
     ): RequestedRaffleWinnerEventFilter;
 
-    "winnerPicked(address)"(
+    "WinnerPicked(address)"(
       winner?: PromiseOrValue<string> | null
-    ): winnerPickedEventFilter;
-    winnerPicked(
+    ): WinnerPickedEventFilter;
+    WinnerPicked(
       winner?: PromiseOrValue<string> | null
-    ): winnerPickedEventFilter;
+    ): WinnerPickedEventFilter;
   };
 
   estimateGas: {
@@ -399,7 +412,9 @@ export interface Raffle extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    getEntraceFee(overrides?: CallOverrides): Promise<BigNumber>;
+    getBalance(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getEntranceFee(overrides?: CallOverrides): Promise<BigNumber>;
 
     getInterval(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -444,7 +459,9 @@ export interface Raffle extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    getEntraceFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getEntranceFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getInterval(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

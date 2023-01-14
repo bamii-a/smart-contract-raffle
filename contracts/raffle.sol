@@ -65,7 +65,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     /* events */
     event RaffleEnter(address indexed player);
     event RequestedRaffleWinner(uint256 indexed requestId);
-    event winnerPicked(address indexed winner);
+    event WinnerPicked(address indexed winner);
 
     // VRFCoordinatorV2 - address of the contract that
     // does the random number verification
@@ -112,7 +112,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
      * 3. The contract has ETH.
      * 4. Implicity, your subscription is funded with LINK.
      */
-
+    /** CHAINLINK KEEPERS (AUTOMATION) */
     function checkUpkeep(
         bytes memory /* checkData*/
     )
@@ -134,6 +134,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         // We don't use the checkData in this. The checkData is defined when the Upkeep was registered.
     }
 
+    /** CHAINLINK KEEPERS (AUTOMATION) */
     /* function will be called by chainlink keepers network */
     /* previously requestRandomWinner, now performUpkeep */
     /**
@@ -165,6 +166,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         emit RequestedRaffleWinner(requestId);
     }
 
+    /** CHAINLINK VRF */
     /* fulfil random numbers */
     /* internal override (it's meant to be overwritten) */
     function fulfillRandomWords(
@@ -186,7 +188,11 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         if (!success) {
             revert Raffle__TransferFailed();
         }
-        emit winnerPicked(recentWinner);
+
+        // console.log("balance", address(this).balance);
+        // console.log("balance * 5 / 100", (address(this).balance * 5) / 100);
+
+        emit WinnerPicked(recentWinner);
     }
 
     // function getWinnerFunds(address _address) public view returns (uint256) {
@@ -196,11 +202,15 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
     /** Getter Functions */
 
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
     function getRaffleState() public view returns (RaffleState) {
         return s_raffleState;
     }
 
-    function getEntraceFee() public view returns (uint256) {
+    function getEntranceFee() public view returns (uint256) {
         return i_entranceFee;
     }
 
