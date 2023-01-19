@@ -41,7 +41,7 @@ chainId === 31337
 
           const startingTimeStamp = await raffle.getLastTimeStamp();
           const accounts = await ethers.getSigners();
-          
+
           console.log("Setting up Listener...");
           await new Promise<void>(async (resolve, reject) => {
             // setup listener before we enter the raffle
@@ -79,7 +79,6 @@ chainId === 31337
                 );
                 /* It's checking that the timestamp has changed. */
                 assert(endingTimeStamp > startingTimeStamp);
-
                 resolve();
               } catch (error) {
                 console.log(error);
