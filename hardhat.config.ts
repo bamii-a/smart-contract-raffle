@@ -44,22 +44,22 @@ const config: HardhatUserConfig = {
       // accounts - hardhat places in already on local
       chainId: 31337,
     },
-    // gasReporter: {
-    //   enabled: true,
-    //   outputFile: "gas-report.txt",
-    //   noColors: true,
-    //   // get usd gas value from coinmarketcap api
-    //   currency: "USD",
-    //   // coinmarketcap,
-    //   token: "ETH",
-    // },
-    // etherscan: {
-    //   apiKey: { rinkeby: ETHERSCAN_API_KEY },
-    // },
   },
   mocha: {
     timeout: 4000000000000,
   },
+  gasReporter: {
+    enabled: false,
+    outputFile: "gas-report.txt",
+    noColors: true,
+    // get usd gas value from coinmarketcap api
+    currency: "USD",
+    // coinmarketcap,
+    token: "ETH",
+  },
+  // etherscan: {
+  //   apiKey: { rinkeby: ETHERSCAN_API_KEY },
+  // },
 };
 
 export default config;

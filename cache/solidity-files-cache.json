@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/bami/Documents/smart-lottery/smart-contract-raffle/contracts/Raffle.sol": {
-      "lastModificationDate": 1673658020807,
-      "contentHash": "86ef589780db871e051279039ae8236c",
+      "lastModificationDate": 1674222338956,
+      "contentHash": "76853d3e0b8b861a7875cfc97331130c",
       "sourceName": "contracts/Raffle.sol",
       "solcConfig": {
         "version": "0.8.16",

@@ -11,11 +11,11 @@ async function mockKeepers() {
   const { upkeepNeeded } = await raffle.callStatic.checkUpkeep(checkData);
   console.log("upkeepNeeded", upkeepNeeded);
   if (upkeepNeeded) {
-    // console.log("checkData", checkData);
-    // let vrfCoordinatorV2Mock: VRFCoordinatorV2Mock = await ethers.getContract(
-    //   "VRFCoordinatorV2Mock"
-    // );
-
+    const vrfCoordinatorV2Mock: VRFCoordinatorV2Mock = await ethers.getContract(
+      "VRFCoordinatorV2Mock"
+    );
+    const subscriptionId = raffle.getSubscriptionId();
+    await vrfCoordinatorV2Mock.addConsumer(subscriptionId, raffle.address);
     /* It's calling the `performUpkeep` function of the Raffle contract. */
     const tx = await raffle.performUpkeep(checkData);
     /* It's waiting for the transaction to be mined. */
@@ -38,8 +38,6 @@ async function mockVrf(requestId: BigNumber, raffle: Raffle) {
   const vrfCoordinatorV2Mock: VRFCoordinatorV2Mock = await ethers.getContract(
     "VRFCoordinatorV2Mock"
   );
-  //   const subscriptionId = raffle.getSubscriptionId();
-  //   await vrfCoordinatorV2Mock.addConsumer(subscriptionId, raffle.address);
   /* It's calling the `fulfillRandomWords` function of the `VRFCoordinatorV2Mock` contract. */
   await vrfCoordinatorV2Mock.fulfillRandomWords(requestId, raffle.address);
   console.log("Responded!");

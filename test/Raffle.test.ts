@@ -94,6 +94,7 @@ chainId !== 31337
           /* It's mining a block. */
           await network.provider.send("evm_mine", []);
           const { upkeepNeeded } = await raffle.callStatic.checkUpkeep([]);
+          assert.equal(upkeepNeeded, true);
           const players = (
             (await raffle.getNumberOfPlayers()) as BigNumber
           ).toString();
@@ -104,7 +105,7 @@ chainId !== 31337
           // console.log(`timeStamp: ${timeStamp}`);
           // console.log(` raffleState: ${raffleState},`);
           // console.log(`bal: ${ethers.utils.formatUnits(bal)} `);
-          // console.log("upkeepNeeded", upkeepNeeded);
+          console.log("upkeepNeeded", upkeepNeeded);
           // console.log(
           //   "balance-ethers",
           //   ethers.utils.formatEther("10000000000000000")

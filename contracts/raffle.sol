@@ -129,6 +129,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         bool hasBalance = address(this).balance > 0;
         bool hasPlayers = s_players.length > 0;
         bool timePassed = ((block.timestamp - s_lastTimeStamp) > i_interval);
+        console.log(timePassed, isOpen, hasBalance, hasPlayers);
         upkeepNeeded = (timePassed && isOpen && hasBalance && hasPlayers);
         return (upkeepNeeded, "0x0");
         // We don't use the checkData in this. The checkData is defined when the Upkeep was registered.
